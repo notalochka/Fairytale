@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Express</title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body>
+    
+    <%- include("blocks/header") -%>
+    <main>
+      <h1><%= tale.name %></h1>
+      <div class="author">
+        <p><%= tale.author %></p>
+      </div>
+      <div class="statistics">
+        <img src="/views.png" alt="" />
+        <p><%= tale.views %></p>
+        <img src="/like.png" alt="" />
+        <p><%= tale.saved %></p>
+        <img src="/rate.png" alt="" />
+        <p><%= tale.rate %></p>
+      </div>
+      <div class="content">
+      <% paragraphs.forEach(paragraph => { %>
+      <p><%= paragraph %></p>
+      <% }); %>
+      <div class="buttons">
+        <button class="read-button" onclick="markAsRead()">Прочитано</button>
+        <% if (session.user) { %>
+          <button class="saved-button" onclick="saveTale()">Зберегти</button>
+        <% } %>
+      </div>
+    </main>
+    <div class="rating-block">
+      <div class="rating"> 
+        <input type="radio" name="rating" value="5" id="5">
+        <label for="5">☆</label> 
+        <input type="radio" name="rating" value="4" id="4">
+        <label for="4">☆</label> 
+        <input type="radio" name="rating" value="3" id="3">
+        <label for="3">☆</label> 
+        <input type="radio" name="rating" value="2" id="2">
+        <label for="2">☆</label> 
+        <input type="radio" name="rating" value="1" id="1">
+        <label for="1">☆</label>
+      </div>
+      <div>
+        <button class="rate-button" onclick="postVote()">Відправити рейтинг</button>
+      </div>
+      
+    </div>
+    <script>    
+      function markAsRead() {
+        const taleName = "<%= tale.name %>";
+        fetch(`/tales/${taleName}/mark-as-read`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              const button = document.querySelector(".read-button");
+              button.disabled = true;
+              button.innerText = "Вже прочитано";
+              const viewsElement = document.querySelector(".statistics p:nth-child(2)");
+              viewsElement.innerText = data.views;
+            } else {
+              console.error(data.message);
+            }
+          })
+          .catch((error) => {
+            console.error("Помилка під час надсилання запиту:", error);
+          });
+      }
+
+      function postVote() {
+        const ratingInputs = document.getElementsByName('rating');
+        let selectedRating = null;
+        for (const input of ratingInputs) {
+          if (input.checked) {
+            selectedRating = input.value;
+            break;
+          }
+        }
+
+        if (selectedRating === null) {
+          alert("Будь ласка, оберіть рейтинг перед відправкою.");
+          return;
+        }
+
+        const name = "<%= tale.name %>";
+        const data = {
+          rate: selectedRating,
+          taleName: name,
+        };
+
+        fetch("/tales/submit_rating", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            const button = document.querySelector(".rate-button");
+            const rateElement = document.querySelector(".statistics p:nth-child(6)");
+            rateElement.innerText = data.rate;
+            button.disabled = true;
+            button.innerText = "Рейтинг відправлено";
+          } else {
+            console.error(data.message);
+          }
+        })
+        .catch(error => {
+          console.error("Помилка під час відправки рейтингу:", error);
+        });
+        
+      };
+      function saveTale() {
+        const taleName = "<%= tale.name %>";
+        fetch(`/tales/${taleName}/save`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              const button = document.querySelector(".saved-button");
+              button.disabled = true;
+              button.innerText = "Збережено";
+            } else {
+              console.error(data.message);
+            }
+          })
+          .catch((error) => {
+            console.error("Помилка під час збереження:", error);
+          });
+      }
+    </script>
+  </body>
+</html>

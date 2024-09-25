@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Express</title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body>
+    <%- include("blocks/header") -%>
+      <div class="container">
+        <h2>Вхід користувача</h2>
+        <div class="form-wrapper">
+        <form action="/check_user" method="post">
+          <div class="form-group">
+            <label for="name_or_email">Ім'я користувача або email адреса:</label>
+            <input
+              type="text"
+              id="name_or_email"
+              name="name_or_email"
+              placeholder="Введіть ім'я або email"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Пароль:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Введіть пароль"
+              required
+            />
+          </div>
+          <button type="submit" class="login-button">Увійти</button>
+        </form>
+      </div>
+      <% 
+      const msg = errorMessage || null;
+      if (msg) { 
+      %>
+        <script>
+          window.onload = function() {
+            alert("<%= msg %>");
+          };
+        </script>
+      <% } %>
+  </body>
+</html>

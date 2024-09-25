@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Express</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <%- include("blocks/header") -%>
+    <main>
+      <h1>Топ 10 популярних казок</h1>
+      <% tales.forEach(tale => { %>
+      <h2><%= tale.name %></h2>
+      <div class="author">
+        <p><%=tale.author%></p>
+      </div>
+      <div class="statistics">
+        <img src="/views.png" alt="" />
+        <p><%= tale.views %></p>
+        <img src="/like.png" alt="" />
+        <p><%= tale.saved %></p>
+        <img src="/rate.png" alt="" />
+        <p><%= tale.rate %></p>
+      </div>
+      <div class="text">
+        <p><%= tale.summary %></p>
+      </div>
+      <button
+        class="read-button"
+        onclick="window.location.href='/tales/<%= tale.name %>'"
+      >
+        Читати повністю
+      </button>
+      <% }); %>
+    </main>
+  </body>
+</html>

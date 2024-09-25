@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Express</title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body>
+    <%- include("blocks/header") -%>
+    <main>
+      <h1>Зміст казок</h1>
+      <% sortedLetters.forEach(letter => { %>
+      <div class="letter-section">
+        <h2 class="letter-title"><%= letter %></h2>
+        <hr />
+        <ul class="tales-list">
+          <% grouped[letter].forEach(tale => { %>
+          <li><a href="/tales/<%= tale.name %>"><%= tale.name %></a></li>
+          <% }); %>
+        </ul>
+      </div>
+      <% }); %>
+    </main>
+  </body>
+</html>

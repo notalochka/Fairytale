@@ -1,0 +1,17 @@
+<header>
+  <span> <em>Казка на ніч</em> </span>
+  <nav>
+    <a href="/">Головна</a>
+    <a href="/content">Зміст</a>
+    <% if (session.user) { %>
+    <a href="/userpage">Мій кабінет</a>
+    <a href="/logout">Вийти</a>
+    <% } else { %>
+    <a href="/userLogin">Увійти</a>
+    <% } %>
+  </nav>
+  <form method="post" action="/check_tales">
+    <input type="text" name="talesname" placeholder="Знайти казку" />
+    <button type="submit">Пошук</button>
+  </form>
+</header>

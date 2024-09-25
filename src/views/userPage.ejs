@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Express</title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body>
+    <%- include("blocks/header") -%>
+    <main>
+      <h1>Кабінет користувача</h1>
+      <% if (user.read_tales && user.read_tales.length > 0) { %>
+      <div class="letter-section">
+        <h2 class="letter-title">Прочитані казки</h2>
+        <hr />
+        <ul class="tales-list">
+          <% user.read_tales.forEach(name => { %>
+          <li><a href="/tales/<%= name %>"><%= name %></a></li>
+          <% }); %>
+        </ul>
+      </div>
+      <% } %> <% if (user.saved_tales && user.saved_tales.length > 0) { %>
+      <div class="letter-section">
+        <h2 class="letter-title">Збережені казки</h2>
+        <hr />
+        <ul class="tales-list">
+          <% user.saved_tales.forEach(name => { %>
+          <li><a href="/tales/<%= name %>"><%= name %></a></li>
+          <% }); %>
+        </ul>
+      </div>
+      <% } %> <% if (user.unread_tales && user.unread_tales.length > 0) { %>
+      <div class="letter-section">
+        <h2 class="letter-title">Не прочитані казки</h2>
+        <hr />
+        <ul class="tales-list">
+          <% user.unread_tales.forEach(name => { %>
+          <li><a href="/tales/<%= name %>"><%= name %></a></li>
+          <% }); %>
+        </ul>
+      </div>
+      <% } %>
+    </main>
+  </body>
+</html>

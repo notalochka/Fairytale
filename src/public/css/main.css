@@ -1,0 +1,281 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: #fef5ff;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 50px;
+}
+
+header {
+  width: 90%;
+  padding: 20px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #600094;
+  border-bottom: 2px solid #600094;
+}
+header span {
+  font-size: 25px;
+  font-weight: bold;
+  color: #fcfcfc;
+}
+header nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 15px;
+}
+
+header nav a:hover {
+  color: #ffe0e0;
+}
+
+header input {
+  border: 3px solid rgb(255, 255, 255);
+  border-radius: 5px;
+  background: #ffffff;
+  color: #2a0043;
+  padding: 7px 10px;
+  margin-right: 10px;
+  outline: none;
+}
+
+header input:focus {
+  border-color: #dd5353;
+}
+
+header button {
+  border: 0;
+  background: #dd5353;
+  color: #fff1ff;
+  padding: 6px 10px;
+  border-radius: 2px;
+  transition: transform 500ms ease;
+}
+
+header button:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+main {
+  margin-top: 50px;
+  margin-left: 50px;
+  text-align: left;
+}
+main h1 {
+  color: #4c065c;
+}
+
+main h2 {
+  color: #630778;
+  margin-top: 50px;
+}
+
+.letter-section {
+  margin-top: 60px;
+}
+
+.letter-title {
+  margin-bottom: 10px;
+}
+
+.tales-list li {
+  list-style-type: none;
+  margin-bottom: 15px;
+}
+
+.author p {
+  margin-top: 10px;
+  color: #4e445a;
+}
+
+.text p {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  margin-right: 200px;
+  color: #000000;
+}
+
+.content p {
+  margin-top: 5px;
+  margin-right: 200px;
+  color: #000000;
+  text-indent: 20px;
+}
+
+.statistics {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 20px;
+  color: #000000;
+  gap: 10px;
+}
+.buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+.statistics img {
+  width: 20px;
+  height: auto;
+  margin-left: 20px;
+}
+
+.read-button {
+  background-color: #9522d3;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.read-button:hover {
+  background-color: #3d0073;
+}
+
+.container {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.container h2 {
+  text-align: center;
+  color: #333;
+}
+.form-wrapper {
+  margin-right: 25px;
+  padding: 10px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  margin-top: 20px;
+}
+
+.form-group label {
+  display: block;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group input:focus {
+  border-color: #007bff;
+}
+
+.login-button {
+  margin-left: 100px;
+  width: 50%;
+  padding: 10px;
+  background-color: #9522d3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #3d0073;
+}
+
+.rating-block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+
+.rating > input {
+  display: none;
+}
+
+.rating > label {
+  position: relative;
+  width: 1em;
+  font-size: 40px;
+  font-weight: 300;
+  color: #ffd600;
+  cursor: pointer;
+}
+
+.rating > label::before {
+  content: "\2605";
+  position: absolute;
+  opacity: 0;
+}
+
+.rating > label:hover:before,
+.rating > label:hover ~ label:before {
+  opacity: 1 !important;
+}
+
+.rating > input:checked ~ label:before {
+  opacity: 1;
+}
+
+.rating:hover > input:checked ~ label:before {
+  opacity: 0.4;
+}
+
+.rate-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  background-color: #9522d3;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.rate-button:hover {
+  background-color: #3d0073;
+}
+
+.saved-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #7e650c;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.saved-button:hover {
+  background-color: #67530a;
+}
